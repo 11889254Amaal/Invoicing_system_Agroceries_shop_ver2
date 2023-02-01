@@ -18,9 +18,9 @@ public class MenuClass {
 	}
 	
 	public static List<String> ShopSettingMenu() {
-		return Arrays.asList("1. Load Data (Items and invoices)\r\n"
-				+ "", "2.Set Shop Name (data should be saved)", "3.Set Invoice Header (Tel / Fax / Email / Website) (Data should be saved)",
-				"4.Go Back,  "
+		return Arrays.asList("1. Load Data (Items and invoices)"
+				+  "2.Set Shop Name (data should be saved)", "3.Set Invoice Header (Tel / Fax / Email / Website) (Data should be saved)",
+				"4.Go Back"
 				
 
 		);
@@ -28,9 +28,9 @@ public class MenuClass {
 	}
 	
 	public static List<String>  ManageShopItemsMenu() {
-		return Arrays.asList("1. Add Items (Item should be saved/serialized)\r\n"
-				+ ""
-				+ "", "2.Delete Items", "3. Change Item Price",
+		return Arrays.asList("1. Add Items (Item should be saved/serialized)"
+				
+				+"2.Delete Items", "3. Change Item Price",
 				"4. Report All Items,  "+"5.Go Back"
 				
 
