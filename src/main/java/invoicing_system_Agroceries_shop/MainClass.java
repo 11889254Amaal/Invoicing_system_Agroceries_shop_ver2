@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MainClass {
-
+    
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		boolean ShoppingSettingExiste=true;
+	    boolean showMenuExiste=true;
+	    boolean  ManageShopExiste=true;
 		// this to enter data of database===>
 		System.out.println("*********************************************************");
 		System.out.println("     Invoicing system for a groceries shop Main Menu     ");
@@ -27,11 +30,12 @@ public class MainClass {
 					System.out.println("*********************************************************");
 					System.out.println("              Plz Enter Option of Case                   ");
 					System.out.println("*********************************************************");
+					while(showMenuExiste) {
 					for (String x : MenuClass.ShowMenu()) {
 
 						System.out.println(x);
 					}
-					do {
+					
 						Scanner sc = new Scanner(System.in);
 					
 						int userInput = sc.nextInt();
@@ -43,8 +47,31 @@ public class MainClass {
 							System.out.println(x);
 							}
 							System.out.println("========================================================");
-						break;
-						
+							System.out.println("              Plz Enter Option of Case                  ");
+							System.out.println("========================================================");
+							int userInputForSHOPPINGSEETING = sc.nextInt();
+						    while(ShoppingSettingExiste) {
+						    	switch(userInputForSHOPPINGSEETING) {
+						    	case 1:
+						    		//this case to load Data of Items And Invoices 
+						    		
+									
+						    	break;
+						    	
+						    	case 2:
+							    break;
+							    
+						    	case 3:
+							    break;
+							    
+						    	case 4:
+						    		ShoppingSettingExiste=false;
+						    		showMenuExiste=true;
+								break;
+						    	
+						    	}
+						    }ShoppingSettingExiste=false;
+					       break;
 						case 2:
 							//this Array List for Manage Shop Items
 							System.out.println("==========WELCOME TO Manage Shop Items===================");
@@ -52,6 +79,33 @@ public class MainClass {
 							System.out.println(x);
 							}
 							System.out.println("=========================================================");
+							//show the mean menu
+							System.out.println("========================================================");
+							System.out.println("              Plz Enter Option of Case                  ");
+							System.out.println("========================================================");
+							int userInputForManageShopItems = sc.nextInt();
+						    while(ManageShopExiste) {
+						    	switch(userInputForManageShopItems) {
+						    	case 1:
+						    		
+						    	break;
+						    	
+						    	case 2:
+							    break;
+							    
+						    	case 3:
+							    break;
+							    
+						    	case 4:
+						    		
+								break;
+						    	case 5:
+						    		ManageShopExiste=false;
+						    		showMenuExiste=true;
+						    	break;
+						    	
+						    	}
+						    }ShoppingSettingExiste=false;
 						break;
 						
 						case 3:
@@ -66,6 +120,11 @@ public class MainClass {
 							
 							
 							System.out.println("=========================================================");
+							//show the mean menu
+							for (String x : MenuClass.ShowMenu()) {
+
+								System.out.println(x);
+							}
 						break;
 						
 						case 4:
@@ -73,6 +132,11 @@ public class MainClass {
 							InvoicesServices ReportClass = new InvoicesServices();
 							ReportClass.REPORT();
 							System.out.println("=================================================");
+							//show the mean menu
+							for (String x : MenuClass.ShowMenu()) {
+
+								System.out.println(x);
+							}
 						break;
 						
 						case 5:
@@ -80,6 +144,11 @@ public class MainClass {
 							InvoicesServices ReportInvoiceClass = new InvoicesServices();
 							ReportInvoiceClass.ReportAllInvoices();
 							System.out.println("==============================================");
+							//show the mean menu
+							for (String x : MenuClass.ShowMenu()) {
+
+								System.out.println(x);
+							}
 							
 						break;
 						
@@ -88,10 +157,22 @@ public class MainClass {
 							InvoicesServices SearchInvoiceClass = new InvoicesServices();
 							SearchInvoiceClass.SearchInvoicesById();
 							System.out.println("==============================================");
+							
+							//show the mean menu
+							for (String x : MenuClass.ShowMenu()) {
+
+								System.out.println(x);
+							}
 							break;
 							
 						case 7:
 							//this case to count how many time Access the Case
+							
+							//show the mean menu
+							for (String x : MenuClass.ShowMenu()) {
+
+								System.out.println(x);
+							}
 						break;
 						
 						case 8:
@@ -111,7 +192,7 @@ public class MainClass {
                         
 						}
 
-					} while (true);
+					} showMenuExiste=false;
 				}
 			}
 		} else {
