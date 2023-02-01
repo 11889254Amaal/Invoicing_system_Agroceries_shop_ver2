@@ -1,10 +1,11 @@
 package invoicing_system_Agroceries_shop;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MainClass {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// this to enter data of database===>
 		System.out.println("*********************************************************");
 		System.out.println("     Invoicing system for a groceries shop Main Menu     ");
@@ -67,7 +68,46 @@ public class MainClass {
 							System.out.println("=========================================================");
 						break;
 						
+						case 4:
+							System.out.println("===Report of Invoice(NO ITEMS/NO INFOICE/TOTAL)==");
+							InvoicesServices ReportClass = new InvoicesServices();
+							ReportClass.REPORT();
+							System.out.println("=================================================");
+						break;
 						
+						case 5:
+							System.out.println("==========Report all Invoice===================");
+							InvoicesServices ReportInvoiceClass = new InvoicesServices();
+							ReportInvoiceClass.ReportAllInvoices();
+							System.out.println("==============================================");
+							
+						break;
+						
+						case 6:
+							System.out.println("==========Search Invoice by id===================");
+							InvoicesServices SearchInvoiceClass = new InvoicesServices();
+							SearchInvoiceClass.SearchInvoicesById();
+							System.out.println("==============================================");
+							break;
+							
+						case 7:
+							//this case to count how many time Access the Case
+						break;
+						
+						case 8:
+							
+							System.out.println("Are You Want To existe from system if yes press 1 IF NOT press 0");
+							int Existe_from_system = sc.nextInt();
+							if (Existe_from_system == 1) {
+								System.out.println("System is exsite");
+								System.exit(0);
+							} else if (Existe_from_system == 0) {
+								for (String x : MenuClass.ShowMenu()) {
+									System.out.println(x);
+								}
+							}
+							break;
+							
                         
 						}
 

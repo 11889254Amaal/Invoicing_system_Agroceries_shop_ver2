@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import com.mysql.cj.jdbc.Driver;
+
 public class InvoicesServices {
 
 	public boolean CreateTableInvoiceFunction() {
@@ -176,4 +178,123 @@ public class InvoicesServices {
 		}
 		return false;
 	}
+
+	public static boolean REPORT() throws ClassNotFoundException, SQLException {
+		try {
+			Connection conn = Constant.getDatabaseConnection(Constant.USER_URL, Constant.USER_NAME,Constant.USER_PASSWORD);
+			Statement stmt = conn.createStatement();
+			if (conn != null) {
+			
+		//prepared statment to get all number of items from invoices
+		String SqlNoOfItems = "SELECT SUM(no_of_items) from invoice";
+		PreparedStatement NoOfITEMSPreparedStatment = conn.prepareStatement(SqlNoOfItems);
+		int No_of_items = 0;
+		ResultSet NoOfItemsResultSet = NoOfITEMSPreparedStatment.executeQuery();
+		if (NoOfItemsResultSet.next()) {
+			No_of_items = NoOfItemsResultSet.getInt(1);
+			System.out.println("NO of ITEMS   "+No_of_items);
+		}
+		
+		//prepared statment to get all number of Invoices from invoices
+		String SqlNoOfInvoices = "SELECT COUNT(*) FROM invoice";
+		PreparedStatement NoOfInvoicesPreparedStatment = conn.prepareStatement(SqlNoOfInvoices);
+		int No_of_Invoices = 0;
+		ResultSet NoOfInvoicesResultSet = NoOfInvoicesPreparedStatment.executeQuery();
+		if (NoOfInvoicesResultSet.next()) {
+			No_of_Invoices = NoOfInvoicesResultSet.getInt(1);
+			System.out.println("NO of Invoices  "+No_of_Invoices);
+		}
+		
+		//prepared statment to get all Total from invoices
+				String SqlTotalOfInvoices = "SELECT SUM(total_amount) FROM invoice";
+				PreparedStatement TotalOfInvoicesPreparedStatment = conn.prepareStatement(SqlTotalOfInvoices);
+				int Total_of_Invoices = 0;
+				ResultSet TotalOfInvoicesResultSet = TotalOfInvoicesPreparedStatment.executeQuery();
+				if (TotalOfInvoicesResultSet.next()) {
+					Total_of_Invoices = TotalOfInvoicesResultSet.getInt(1);
+					System.out.println("Total  "+Total_of_Invoices);
+				}
+		}
+		} catch (SQLException e) {
+			e.getErrorCode();
+		}
+		return false;
+	
+	}
+
+	
+	public static void ReportAllInvoices() {
+		try {
+			Connection conn = Constant.getDatabaseConnection(Constant.USER_URL, Constant.USER_NAME,Constant.USER_PASSWORD);
+			Statement stmt = conn.createStatement();
+			String sql = "SELECT * from invoice";
+			if (conn != null) {	
+			Statement st = conn.createStatement();
+			// Executing query	
+			ResultSet n = st.executeQuery(sql);
+			while (n.next()) {
+				System.out.println("==================================");
+				System.out.println(" Invoice_number:" + n.getInt(1));
+			    System.out.println(" invoice date:" + n.getString(6));
+			    System.out.println(" Customer Name:" + n.getString(2));
+			    System.out.println(" no of items:" + n.getInt(5));
+			    System.out.println(" total amount:" + n.getInt(7));
+			    System.out.println(" Balance:" + n.getInt(9));
+			    System.out.println("==================================");
+			   
+			}
+			
+			conn.close();
+		}} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+	
+	public static void SearchInvoicesById() {
+		String url = "jdbc:mysql://localhost:3306/shopSystem";
+		String username = "root";
+		String password = "root";
+		System.out.println("plz enter id of invoice that want to search");
+		Scanner sc1 = new Scanner(System.in); // System.in is a standard input stream
+		String id_of_invoice = sc1.next();
+		String sql = " Select * from invoice INNER JOIN items ON items.item_ID = invoice.InvoiceItems_id  where invoice.Invoice_ID='"+id_of_invoice + "'";
+		
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			// Registering drivers
+			DriverManager.registerDriver(driver);
+			// Reference to connection interface
+			con = DriverManager.getConnection(url, username, password);
+			Statement st = con.createStatement();
+			// Executing query
+
+			
+			ResultSet n = st.executeQuery(sql);
+			while (n.next()) {
+				System.out.println("==================================");
+				System.out.println(" Invoice_number:" + n.getInt(1));
+			    System.out.println(" invoice date:" + n.getString(6));
+			    System.out.println(" Customer Name:" + n.getString(2));
+			    System.out.println(" item id:" + n.getInt(3));
+			    System.out.println(" phone number:" + n.getString(4));
+			    System.out.println(" no of items:" + n.getInt(5));
+			    System.out.println(" Invoice date:" + n.getString(6));
+			    System.out.println(" total amount:" + n.getInt(7));
+			    System.out.println(" paid amount:" + n.getInt(8));
+			    System.out.println(" Balance:" + n.getInt(9));
+			    System.out.println(" item name:" + n.getString(11));
+			    System.out.println(" price:" + n.getInt(13));
+			    System.out.println(" quantity:" + n.getString(14));
+			    System.out.println("==================================");
+			   
+			}
+			
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+	
 }
