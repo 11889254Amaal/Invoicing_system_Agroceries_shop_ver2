@@ -54,11 +54,14 @@ public class MainClass {
 						    	switch(userInputForSHOPPINGSEETING) {
 						    	case 1:
 						    		//this case to load Data of Items And Invoices 
-						    		
+						    
 									
 						    	break;
 						    	
 						    	case 2:
+						    		//this case to set shop name 
+						    		ShopServices ShopSettingsClass = new ShopServices();
+									ShopSettingsClass.ADDSHOP();;
 							    break;
 							    
 						    	case 3:
