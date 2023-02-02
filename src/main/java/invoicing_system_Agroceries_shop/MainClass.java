@@ -79,7 +79,14 @@ public class MainClass {
 						switch (userInputForSHOPPINGSEETING) {
 						case 1:
 							// this case to load Data of Items And Invoices
-
+							System.out.println("========================================================");
+							System.out.println("              Load data of All Items                    ");
+							System.out.println("========================================================");
+							ItemsServices.LoadDtatOfItems();
+							System.out.println("========================================================");
+							System.out.println("              Load data of All Invoices                    ");
+							System.out.println("========================================================");
+							InvoicesServices.ReportAllInvoices();
 							// this case to set shop name
 
 							break;
