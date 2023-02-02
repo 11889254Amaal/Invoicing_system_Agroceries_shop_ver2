@@ -73,7 +73,7 @@ public class MainClass {
 						System.out.println("========================================================");
 						System.out.println("              Plz Enter Option of Case                  ");
 						System.out.println("========================================================");
-
+                       try {
 						int userInputForSHOPPINGSEETING = sc.nextInt();
 
 						switch (userInputForSHOPPINGSEETING) {
@@ -103,8 +103,12 @@ public class MainClass {
 							ShoppingSettingExiste = false;
 							showMenuExiste = true;
 							break;
+						}}
+						catch(Exception e) {
+							System.out.println("Invalid please Enter number");
+							sc.nextLine();}
 
-						}
+					
 					}
 
 					showMenuExiste = true;
@@ -122,7 +126,9 @@ public class MainClass {
 						System.out.println("========================================================");
 						System.out.println("              Plz Enter Option of Case                  ");
 						System.out.println("========================================================");
-						int userInputForManageShopItems = sc.nextInt();
+						try{
+							int userInputForManageShopItems = sc.nextInt();
+						
 
 						switch (userInputForManageShopItems) {
 						case 1:
@@ -150,7 +156,11 @@ public class MainClass {
 							showMenuExiste = true;
 							break;
 
-						}
+						}}catch(Exception e) {
+							System.out.println("Invalid please Enter number");
+							sc.nextLine();}
+						
+					
 					}
 					ShoppingSettingExiste = false;
 					break;
