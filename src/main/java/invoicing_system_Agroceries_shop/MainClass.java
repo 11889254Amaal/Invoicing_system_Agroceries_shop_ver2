@@ -1,7 +1,9 @@
 package invoicing_system_Agroceries_shop;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -24,6 +26,8 @@ public class MainClass {
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		List<Product> itemsList=new ArrayList<>();
+		List<Invoice> invoiceList=new ArrayList<>();
 		boolean ShoppingSettingExiste = true;
 		boolean showMenuExiste = true;
 		boolean ManageShopExiste = true;
@@ -54,8 +58,8 @@ public class MainClass {
 					System.out.println(x);
 				}
 
-				Scanner sc = new Scanner(System.in);
-
+				Scanner sc = new Scanner(System.in); 
+				try {
 				int userInput = sc.nextInt();
 				switch (userInput) {
 				case 1:
@@ -207,8 +211,19 @@ public class MainClass {
 					// show the mean menu
 					
 					break;
-
 				case 8:
+					for(Invoice i: invoiceList) {
+						System.out.println("customer name "+i.getCustomer_name());
+						System.out.println("number of items"+i.getNum_ofItems());
+						System.out.println("phone number"+i.getPhone_number());
+						for(Product p:i.getIttemsList()) {
+							System.out.println("item name"+p.getItemName());
+							System.out.println("item Quantity"+p.getQuantity());
+							System.out.println("item price"+p.getPrice());
+				
+						}
+					}
+				case 9:
 
 					System.out.println("Are You Want To existe from system if yes press 1 IF NOT press 0");
 					int Existe_from_system = sc.nextInt();
@@ -222,7 +237,9 @@ public class MainClass {
 					}
 					break;
 
-				}
+				}}catch(Exception e) {
+					System.out.println("Invalid please Enter number");
+					sc.nextLine();}
 
 			}
 			showMenuExiste = false;

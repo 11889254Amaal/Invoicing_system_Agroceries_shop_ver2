@@ -44,10 +44,11 @@ public class InvoicesServices {
 				int NumberOfInvoices = sc.nextInt();
 
 				for (int i = 0; i < NumberOfInvoices; i++) {
-
+Invoice invoice=new Invoice();
 					System.out.println("==============ADD Invoices================");
 					System.out.println("Plz Enter fist name of customer ");
 					String fist_name = sc.next();
+					invoice.setCustomer_name(fist_name);
 					System.out.println("Plz Enter middle name of customer ");
 					String middle_name = sc.next();
 					System.out.println("Plz Enter last name of customer ");
@@ -56,8 +57,10 @@ public class InvoicesServices {
 					System.out.println(Full_name);
 					System.out.println("Plz Enter phone number ");
 					String phone_number = sc.next();
+					invoice.setPhone_number(phone_number);
 					System.out.println("Plz Enter no of items ");
 					int no_of_items = sc.nextInt();
+					invoice.setNum_ofItems(no_of_items);
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd ");
 					LocalDateTime now = LocalDateTime.now();
 					String Date_oF_invoices = dtf.format(now);

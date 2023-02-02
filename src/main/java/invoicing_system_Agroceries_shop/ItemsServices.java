@@ -148,9 +148,10 @@ public static void LoadDtatOfItems() {
 		String url = "jdbc:mysql://localhost:3306/shopSystem";
 		String username = "root";
 		String password = "root";
+		Product product=new Product();
 		Connection con = DriverManager.getConnection(url, username, password);
 		if (con != null) {
-			;
+		
 			for(int i=1;i<=howManyItems;i++) {
 			System.out.println("==============ADD ITEMS================");
 			Scanner sc = new Scanner(System.in);
@@ -158,11 +159,13 @@ public static void LoadDtatOfItems() {
 			String shop_name = sc.next();
 			System.out.println("Plz Enter item name ");
 			String item_name = sc.next();
+			product.setItemName(item_name);
 			System.out.println("Plz Enter price ");
-			String price = sc.next();
+			int price = sc.nextInt();
+			product.setPrice(price);
 			System.out.println("Plz Enter quantity");
-			String quantity = sc.next();
-			
+			int quantity = sc.nextInt();
+			product.setQuantity(quantity);
 			
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
