@@ -29,8 +29,7 @@ public class InvoicesServices {
 			stmt.executeUpdate(sql1);
 
 		} catch (SQLException e) {
-			System.out.println("Table Invoice Not Created ");
-			System.out.println("=======================================");
+			e.getErrorCode();
 		}
 		return false;
 	}
@@ -294,6 +293,59 @@ public class InvoicesServices {
 			con.close();
 		} catch (Exception ex) {
 			System.err.println(ex);
+		}
+	}
+	
+	public static void ADDInvoiceHeader() throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String url = "jdbc:mysql://localhost:3306/shopSystem";
+		String username = "root";
+		String password = "root";
+		Connection con = DriverManager.getConnection(url, username, password);
+		if (con != null) {
+			System.out.println("==============Invoice Header================");
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Plz enter Name of shop");
+			String shop_name=sc.next();
+			System.out.println("Plz Enter Tel Of Shop");
+			String Tel=sc.next();
+			System.out.println("Plz Enter Fax Of Shop");
+			String Fax=sc.next();
+			System.out.println("Plz Enter Email Of Shop");
+			String Email=sc.next();
+			System.out.println("Plz Enter Website Of Shop");
+			String Website=sc.next();
+			
+			String Sql = "SELECT id FROM Shop Where Shop_Name=?";
+        	
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url1111111 = "jdbc:mysql://localhost:3306/shopSystem";
+			String username1 = "root";
+			String password1 = "root";
+
+			Connection con1 = DriverManager.getConnection(url1111111, username1, password1);
+			PreparedStatement shopPreparedStatment = con1.prepareStatement(Sql);
+            shopPreparedStatment.setString(1, shop_name);
+            int shopId = 0;
+           
+            ResultSet shopResultSet = shopPreparedStatment.executeQuery();
+            if(shopResultSet.next())
+            {
+           	    shopId = shopResultSet.getInt("id");
+                System.out.println(shopId);
+            }
+            String sql1 = "insert into shopdetails(shop_id,Tel,Fax,Email,Website)"
+    				+ " values('"+ shopId+"','"+ Tel+"','"+ Fax+"','"+ Email+"','"+ Website+"')";
+    		Statement st = con.createStatement();
+    		//
+    		// Executing query
+    		int m = st.executeUpdate(sql1);
+    		if (m >= 1)
+    			System.out.println("inserted successfully : " + sql1);
+    		else
+    			System.out.println("insertion failed");
+
+		con.close();
 		}
 	}
 	
